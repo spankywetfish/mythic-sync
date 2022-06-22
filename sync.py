@@ -166,14 +166,14 @@ async def main():
     await scripting()
     try:
         while True:
-            pending = asyncio.Task.all_tasks()
+            pending = asyncio.all_tasks()
             if len(pending) == 0:
                 exit(0)
             else:
                 await asyncio.gather(*pending)
 
     except KeyboardInterrupt:
-        pending = asyncio.Task.all_tasks()
+        pending = asyncio.all_tasks()
         for p in pending:
             p.cancel()
 
